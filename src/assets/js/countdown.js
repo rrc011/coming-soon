@@ -1,7 +1,7 @@
 (function ($) {
   $.fn.countdown = function (options, callback) {
     //loop the function
-    // const interval = setInterval(countdown_proc, 1000);
+    var interval = setInterval(countdown_proc, 1000);
     //custom 'this' selector
     thisEl = $(this);
     //array of custom settings
@@ -19,7 +19,7 @@
       currentDate = Math.floor($.now() / 1000);
       if (eventDate <= currentDate) {
         callback.call(this);
-        clearInterval(setInterval(countdown_proc, 1000));
+        clearInterval(interval);
       }
       seconds = eventDate - currentDate;
       days = Math.floor(seconds / (60 * 60 * 24)); //calculate the number of days
@@ -64,7 +64,7 @@
         thisEl.find(".seconds").text(seconds);
       } else {
         alert("Invalid date. Here's an example: 12 Tuesday 2012 17:30:00");
-        clearInterval(setInterval(countdown_proc, 1000));
+        clearInterval(interval);
       }
     }
     //run the function
